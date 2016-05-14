@@ -11794,10 +11794,10 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">lowercase</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">lowercase</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="c1"># Makes all words lowercase</span>
 <span class="n">repls</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;à&#39;</span><span class="p">,</span> <span class="s2">&quot;a&#39;&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;è&#39;</span><span class="p">,</span> <span class="s2">&quot;e&#39;&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;ò&#39;</span><span class="p">,</span> <span class="s2">&quot;o&#39;&quot;</span><span class="p">)</span>
-<span class="n">noacc</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">kv</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">*</span><span class="n">kv</span><span class="p">),</span> <span class="n">repls</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">)</span>
-<span class="n">cleaned</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;[*#!:;.,()/&#39;]&quot;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">noacc</span><span class="p">)</span>
+<span class="n">noacc</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">kv</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">*</span><span class="n">kv</span><span class="p">),</span> <span class="n">repls</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">)</span> <span class="c1"># Replaces accents with apostrophes</span>
+<span class="n">cleaned</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;[*#!:;.,()/&#39;]&quot;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">noacc</span><span class="p">)</span> <span class="c1"># Deletes &quot;strage&quot; characters</span>
 <span class="n">sub</span> <span class="o">=</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;cost &#39;</span><span class="p">,</span> <span class="s1">&#39;costituzionale &#39;</span><span class="p">)</span> <span class="c1"># Replace &quot;cost&quot; with &quot;costituzionale&quot;</span>
 </pre></div>
 
@@ -11811,7 +11811,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Split the whole text into separate words; it create a list of words.</p>
+<p>Split the whole text into separate words; it creates a list of words.</p>
 
 </div>
 </div>
@@ -11845,23 +11845,19 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">remove_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;ad&#39;</span><span class="p">,</span> <span class="s1">&#39;al&#39;</span><span class="p">,</span><span class="s1">&#39;ai&#39;</span><span class="p">,</span> <span class="s1">&#39;alla&#39;</span><span class="p">,</span> <span class="s1">&#39;alle&#39;</span><span class="p">,</span><span class="s1">&#39;allo&#39;</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;agli&#39;</span><span class="p">,</span> <span class="s1">&#39;abbiamo&#39;</span><span class="p">,</span><span class="s1">&#39;anche&#39;</span><span class="p">,</span> <span class="s1">&#39;avete&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;il&#39;</span><span class="p">,</span> <span class="s1">&#39;lo&#39;</span><span class="p">,</span> <span class="s1">&#39;la&#39;</span><span class="p">,</span> <span class="s1">&#39;le&#39;</span><span class="p">,</span> <span class="s1">&#39;gli&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;che&#39;</span><span class="p">,</span><span class="s1">&#39;ci&#39;</span><span class="p">,</span> <span class="s1">&#39;con&#39;</span><span class="p">,</span><span class="s1">&#39;cui&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;che&#39;</span><span class="p">,</span><span class="s1">&#39;ci&#39;</span><span class="p">,</span> <span class="s1">&#39;come&#39;</span><span class="p">,</span><span class="s1">&#39;con&#39;</span><span class="p">,</span><span class="s1">&#39;cui&#39;</span><span class="p">,</span>
                <span class="s1">&#39;dal&#39;</span><span class="p">,</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span><span class="s1">&#39;dei&#39;</span><span class="p">,</span><span class="s1">&#39;dall&#39;</span><span class="p">,</span> <span class="s1">&#39;dalla&#39;</span><span class="p">,</span><span class="s1">&#39;dalle&#39;</span><span class="p">,</span><span class="s1">&#39;dallo&#39;</span><span class="p">,</span><span class="s1">&#39;dagli&#39;</span><span class="p">,</span><span class="s1">&#39;dell&#39;</span><span class="p">,</span> <span class="s1">&#39;della&#39;</span><span class="p">,</span><span class="s1">&#39;delle&#39;</span><span class="p">,</span><span class="s1">&#39;dello&#39;</span><span class="p">,</span><span class="s1">&#39;dopo&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;da&#39;</span><span class="p">,</span> <span class="s1">&#39;dai&#39;</span><span class="p">,</span> <span class="s1">&#39;un&#39;</span><span class="p">,</span> <span class="s1">&#39;di&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;ed&#39;</span><span class="p">,</span> <span class="s2">&quot;e&#39;&quot;</span><span class="p">,</span><span class="s1">&#39;ecc&#39;</span><span class="p">,</span><span class="s1">&#39;era&#39;</span><span class="p">,</span><span class="s1">&#39;ero&#39;</span><span class="p">,</span><span class="s1">&#39;esso&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;fra&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;ha&#39;</span><span class="p">,</span> <span class="s1">&#39;ho&#39;</span><span class="p">,</span> <span class="s1">&#39;hai&#39;</span><span class="p">,</span> <span class="s1">&#39;hanno&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;da&#39;</span><span class="p">,</span> <span class="s1">&#39;dai&#39;</span><span class="p">,</span><span class="s1">&#39;di&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;ed&#39;</span><span class="p">,</span> <span class="s2">&quot;e&#39;&quot;</span><span class="p">,</span><span class="s1">&#39;ecc&#39;</span><span class="p">,</span><span class="s1">&#39;essere&#39;</span><span class="p">,</span><span class="s1">&#39;essendo&#39;</span><span class="p">,</span><span class="s1">&#39;era&#39;</span><span class="p">,</span><span class="s1">&#39;ero&#39;</span><span class="p">,</span><span class="s1">&#39;esso&#39;</span><span class="p">,</span><span class="s1">&#39;fra&#39;</span><span class="p">,</span><span class="s1">&#39;gli&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ha&#39;</span><span class="p">,</span> <span class="s1">&#39;ho&#39;</span><span class="p">,</span> <span class="s1">&#39;hai&#39;</span><span class="p">,</span> <span class="s1">&#39;hanno&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;in&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;il&#39;</span><span class="p">,</span> <span class="s1">&#39;lo&#39;</span><span class="p">,</span> <span class="s1">&#39;la&#39;</span><span class="p">,</span> <span class="s1">&#39;le&#39;</span><span class="p">,</span><span class="s1">&#39;li&#39;</span><span class="p">,</span><span class="s1">&#39;gli&#39;</span><span class="p">,</span>
                <span class="s1">&#39;ma&#39;</span><span class="p">,</span> <span class="s1">&#39;molto&#39;</span><span class="p">,</span><span class="s1">&#39;molti&#39;</span><span class="p">,</span><span class="s1">&#39;molte&#39;</span><span class="p">,</span><span class="s1">&#39;molta&#39;</span><span class="p">,</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span><span class="s1">&#39;mie&#39;</span><span class="p">,</span><span class="s1">&#39;mia&#39;</span><span class="p">,</span> <span class="s1">&#39;mi&#39;</span><span class="p">,</span> <span class="s1">&#39;mio&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;nel&#39;</span><span class="p">,</span><span class="s1">&#39;nei&#39;</span><span class="p">,</span> <span class="s1">&#39;nella&#39;</span><span class="p">,</span><span class="s1">&#39;nelle&#39;</span><span class="p">,</span><span class="s1">&#39;nell&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;per&#39;</span><span class="p">,</span> <span class="s1">&#39;perché&#39;</span><span class="p">,</span> <span class="s1">&#39;però&#39;</span><span class="p">,</span> <span class="s1">&#39;con&#39;</span><span class="p">,</span><span class="s1">&#39;una&#39;</span><span class="p">,</span><span class="s1">&#39;ogni&#39;</span><span class="p">,</span><span class="s1">&#39;se&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;ne&#39;</span><span class="p">,</span> <span class="s1">&#39;non&#39;</span><span class="p">,</span> <span class="s1">&#39;più&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="s1">&#39;oppure&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;come&#39;</span><span class="p">,</span> <span class="s1">&#39;sono&#39;</span><span class="p">,</span><span class="s1">&#39;essere&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;si&#39;</span><span class="p">,</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="s1">&#39;questi&#39;</span><span class="p">,</span><span class="s1">&#39;essendo&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;sia&#39;</span><span class="p">,</span> <span class="s1">&#39;su&#39;</span><span class="p">,</span><span class="s1">&#39;sua&#39;</span><span class="p">,</span><span class="s1">&#39;suo&#39;</span><span class="p">,</span><span class="s1">&#39;sul&#39;</span><span class="p">,</span><span class="s1">&#39;sull&#39;</span><span class="p">,</span> <span class="s1">&#39;sulla&#39;</span><span class="p">,</span> <span class="s1">&#39;pur&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;quindi&#39;</span><span class="p">,</span><span class="s1">&#39;queste&#39;</span><span class="p">,</span><span class="s1">&#39;questa&#39;</span><span class="p">,</span><span class="s1">&#39;questo&#39;</span><span class="p">,</span> <span class="s1">&#39;quelli&#39;</span><span class="p">,</span><span class="s1">&#39;quelle&#39;</span><span class="p">,</span><span class="s1">&#39;quello&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ne&#39;</span><span class="p">,</span> <span class="s1">&#39;non&#39;</span><span class="p">,</span><span class="s1">&#39;nel&#39;</span><span class="p">,</span><span class="s1">&#39;nei&#39;</span><span class="p">,</span> <span class="s1">&#39;nella&#39;</span><span class="p">,</span><span class="s1">&#39;nelle&#39;</span><span class="p">,</span><span class="s1">&#39;nell&#39;</span><span class="p">,</span><span class="s1">&#39;nello&#39;</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="s1">&#39;ogni&#39;</span><span class="p">,</span><span class="s1">&#39;oppure&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;per&#39;</span><span class="p">,</span> <span class="s1">&#39;perché&#39;</span><span class="p">,</span> <span class="s1">&#39;però&#39;</span><span class="p">,</span><span class="s1">&#39;piu&#39;</span><span class="p">,</span><span class="s1">&#39;pur&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;quindi&#39;</span><span class="p">,</span><span class="s1">&#39;queste&#39;</span><span class="p">,</span><span class="s1">&#39;questa&#39;</span><span class="p">,</span><span class="s1">&#39;questi&#39;</span><span class="p">,</span><span class="s1">&#39;questo&#39;</span><span class="p">,</span><span class="s1">&#39;quella&#39;</span><span class="p">,</span><span class="s1">&#39;quello&#39;</span><span class="p">,</span><span class="s1">&#39;quelli&#39;</span><span class="p">,</span><span class="s1">&#39;quelle&#39;</span><span class="p">,</span>
                <span class="s1">&#39;quei&#39;</span><span class="p">,</span><span class="s1">&#39;quali&#39;</span><span class="p">,</span> <span class="s1">&#39;quanto&#39;</span><span class="p">,</span><span class="s1">&#39;qualora&#39;</span><span class="p">,</span><span class="s1">&#39;quale&#39;</span><span class="p">,</span> <span class="s1">&#39;qualcosa&#39;</span><span class="p">,</span><span class="s1">&#39;qual&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;tra&#39;</span><span class="p">,</span> <span class="s1">&#39;tutt&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;vi&#39;</span>
+               <span class="s1">&#39;se&#39;</span><span class="p">,</span><span class="s1">&#39;sono&#39;</span><span class="p">,</span><span class="s1">&#39;si&#39;</span><span class="p">,</span><span class="s1">&#39;sia&#39;</span><span class="p">,</span> <span class="s1">&#39;su&#39;</span><span class="p">,</span><span class="s1">&#39;sua&#39;</span><span class="p">,</span><span class="s1">&#39;suo&#39;</span><span class="p">,</span><span class="s1">&#39;sul&#39;</span><span class="p">,</span><span class="s1">&#39;sull&#39;</span><span class="p">,</span> <span class="s1">&#39;sulla&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;tra&#39;</span><span class="p">,</span> <span class="s1">&#39;tutt&#39;</span><span class="p">,</span><span class="s1">&#39;un&#39;</span><span class="p">,</span><span class="s1">&#39;uno&#39;</span><span class="p">,</span><span class="s1">&#39;una&#39;</span><span class="p">,</span><span class="s1">&#39;vi&#39;</span>
               <span class="p">]</span>
 <span class="n">remove_list</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s1">&#39;art&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;comma&#39;</span><span class="p">,</span><span class="s1">&#39;puo&#39;</span><span class="p">))</span>
 </pre></div>
@@ -11876,7 +11872,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">remove_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">remove_list</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">remove_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">remove_list</span><span class="p">)</span> <span class="c1"># to be used when using &quot;stopwords&quot; in WordCloud</span>
 </pre></div>
 
 </div>
@@ -11920,7 +11916,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>8535</pre>
+<pre>8537</pre>
 </div>
 
 </div>
@@ -11941,7 +11937,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">list2text</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keep_list</span><span class="p">)</span>
@@ -11968,9 +11964,19 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This generates a squared word cloud:</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">wc_square</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">prefer_horizontal</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">max_words</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">list2text</span><span class="p">)</span>
@@ -11986,6 +11992,16 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Save the text in a new file:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -12008,7 +12024,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;wordcloud.wordcloud.WordCloud at 0x7fe19a83f2d0&gt;</pre>
+<pre>&lt;wordcloud.wordcloud.WordCloud at 0x7ff2ba076290&gt;</pre>
 </div>
 
 </div>
@@ -12016,6 +12032,16 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To generate a word cloud with the shape of Italy:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -12067,7 +12093,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;wordcloud.wordcloud.WordCloud at 0x7fe19a7bbe50&gt;</pre>
+<pre>&lt;wordcloud.wordcloud.WordCloud at 0x7ff2b9c7df90&gt;</pre>
 </div>
 
 </div>
@@ -12097,7 +12123,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;wordcloud.wordcloud.WordCloud at 0x7fe19a7bbe50&gt;</pre>
+<pre>&lt;wordcloud.wordcloud.WordCloud at 0x7ff2b9c7df90&gt;</pre>
 </div>
 
 </div>
@@ -12149,6 +12175,16 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create a Counter container to count the number of time a single word appears in a text:</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
@@ -12164,6 +12200,16 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Show the first 50 most common words:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
